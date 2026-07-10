@@ -1,5 +1,5 @@
 const express = require('express');
-const Database = require('better-sqlite3');
+const { DatabaseSync } = require('node:sqlite');
 const path = require('path');
 
 const app = express();
@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 // On Railway, mount a volume at /data so signups survive redeploys.
 const DB_PATH = process.env.DB_PATH || (require('fs').existsSync('/data') ? '/data/loom.db' : path.join(__dirname, 'loom.db'));
-const db = new Database(DB_PATH);
+const db = new DatabaseSync(DB_PATH);
 
 db.exec(`CREATE TABLE IF NOT EXISTS signups (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
