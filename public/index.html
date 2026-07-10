@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LOOM — Distributed training on consumer hardware</title>
+<meta name="description" content="Your GPU sleeps 20 hours a day. Put it on the loom. Phase 0 compute census for a distributed AI training protocol.">
 <!-- LOOM — distributed consumer compute waitlist -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -75,9 +82,21 @@
     .cell{border-right:none;border-bottom:1px solid var(--line)}
     .cell:last-child{border-bottom:none}
   }
+  
+  @media (max-width:600px){
+    .frame{padding:0 14px}
+    h1{font-size:clamp(30px,9vw,38px)}
+    .bar-meta{display:none}
+    .fields{grid-template-columns:1fr}
+    canvas{height:230px}
+    .hero{padding-top:28px}
+    .cell .v{font-size:17px}
+  }
   @media (prefers-reduced-motion:reduce){ .motion-note{display:none} }
 </style>
 
+</head>
+<body>
 <div class="loom-root">
   <div class="frame">
     <div class="bar">
@@ -285,3 +304,5 @@
   });
 })();
 </script>
+</body>
+</html>
