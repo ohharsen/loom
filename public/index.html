@@ -95,6 +95,13 @@
   @media (prefers-reduced-motion:reduce){ .motion-note{display:none} }
 </style>
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PPGVFYGSY1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PPGVFYGSY1', { anonymize_ip: true });
+</script>
 </head>
 <body>
 <div class="loom-root">
@@ -296,7 +303,7 @@
       fetch('/api/stats').then(x=>x.json()).then(render).catch(()=>{});
       $('joinForm').style.display='none';
       $('nodeId').textContent='#'+String(d.node).padStart(4,'0');
-      $('confirm').style.display='block';
+      $('confirm').style.display='block'; if (typeof gtag==='function') gtag('event','waitlist_signup',{gpu:gpu,vram:vram});
     }catch(err){
       $('err').textContent='Network error. Try again.'; $('err').style.display='block';
       btn.disabled=false; btn.textContent='Join the weave';
