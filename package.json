@@ -1,16 +1,17 @@
 {
   "name": "loom-waitlist",
   "version": "0.1.0",
-  "description": "LOOM — distributed consumer compute. Phase 0 compute census waitlist.",
+  "description": "LOOM \u2014 distributed consumer compute. Phase 0 compute census waitlist.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22.13"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "pg": "^8.13.1"
   },
   "license": "MIT"
 }
