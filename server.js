@@ -81,24 +81,6 @@ app.post('/api/join', async (req, res) => {
   } catch (e) { console.error(e); res.status(500).json({ error: 'Something went wrong. Try again.' }); }
 });
 
-// Admin-only export (JSON or ?format=csv). Requires ADMIN_TOKEN env var.
-app.get('/api/export', async (req, res) => {
-  const token = req.headers['x-admin-token'];
-  if (!process.env.ADMIN_TOKEN || token !== process.env.ADMIN_TOKEN)
-    return res.status(404).json({ error: 'Not found' });
-  try {
-    const rows = (await pool.query('SELECT id, email, gpu, vram, hours, created_at FROM signups ORDER BY id')).rows;
-    if (req.query.format === 'csv') {
-      const csv = ['id,email,gpu,vram,hours,created_at',
-        ...rows.map(r => `${r.id},"${r.email}","${r.gpu}",${r.vram},${r.hours},${r.created_at.toISOString()}`)].join('\n');
-      res.set('Content-Type', 'text/csv');
-      res.set('Content-Disposition', 'attachment; filename=loom-waitlist.csv');
-      return res.send(csv);
-    }
-    res.json(rows);
-  } catch (e) { console.error(e); res.status(500).json({ error: 'export failed' }); }
-});
-
 init().then(() => {
   app.listen(PORT, () => console.log(`LOOM listening on :${PORT} (db: postgres)`));
 }).catch(e => { console.error('init failed:', e); process.exit(1); });
